@@ -2,10 +2,7 @@ require('dotenv').config()
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var { nanoid } = require('nanoid');
 var mongoose = require('mongoose');
-const e = require('express');
-const WebUrl = 'https://test.vad37.com/api/shorturl/';
 
 // configure the app to use bodyParser()
 SetupApp();
