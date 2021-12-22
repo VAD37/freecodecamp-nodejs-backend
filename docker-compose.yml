@@ -1,0 +1,25 @@
+  # Sample Database
+version: '3.1'
+
+services:
+  mongo:
+    container_name: mongodb-freecodecamp
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: goose
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123
+
+  mongo-express:
+    container_name: mongo-freecodecamp
+    image: mongo-express:latest
+    restart: unless-stopped
+    ports:
+      - 9045:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 123
+      ME_CONFIG_MONGODB_URL: mongodb://root:123@mongo:27017/
