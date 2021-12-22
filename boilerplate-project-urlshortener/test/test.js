@@ -6,9 +6,9 @@ var app = require('../app');
 describe('You can POST a URL to /api/shorturl and get a JSON response with original_url and short_url properties.'
     , async () => {
         const full_url = 'https://www.google.com/' + Date.now();
-        
+        const agent = request.agent(app);
         it('Should be a valid url and original = ' + full_url, (done) => {
-            request(app).post('/api/shorturl')
+            agent.post('/api/shorturl')
                 .send({url: full_url})
                 .expect(200)
                 .end((err, res) => {
