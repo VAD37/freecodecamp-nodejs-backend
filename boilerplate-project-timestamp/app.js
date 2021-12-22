@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 
+AllowCORSfromFreeCodeCamp();
+
 app.get("/api/", (req, res) => {
     let now = Date.now();
     let date = new Date(now);
@@ -11,6 +13,7 @@ app.get("/api/", (req, res) => {
 
 
 app.get("/api/:time", (req, res) => {
+
     const { time } = req.params;
     const date = GetDate(time);
     let unixTime = date.getTime();    
@@ -23,6 +26,14 @@ app.get("/api/:time", (req, res) => {
     else
         res.send({ unix: unixTime, utc: utcTime });
 });
+
+function AllowCORSfromFreeCodeCamp() {
+    app.use((req, res, next) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
+}
 
 function GetDate(time) {
     if (time.match(/^\d+$/))
